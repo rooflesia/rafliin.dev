@@ -10,10 +10,10 @@ import { Toaster } from '@/components/atoms/toaster';
 const interFont = Inter({ subsets: ['latin'], variable: '--font-inter' });
 export const metadata: Metadata = {
   title: {
-    template: '%s | by Chocoding.in',
-    default: 'Chocoding.in',
+    template: 'Rooflesia',
+    default: 'rafliin.dev',
   },
-  description: 'A web by Chocoding.in',
+  description: 'A web by rafliin.dev',
 };
 
 export default async function RootLayout({
@@ -27,9 +27,9 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={interFont.variable}>
       <head>
-        <link rel="icon" href="/images/logo.svg" sizes="any" />
+        <link rel="icon" href="/images/logo-white.svg" sizes="any" />
       </head>
-      <body className="overflow-x-hidden font-inter">
+      <body className="font-inter overflow-x-hidden">
         <NextIntlClientProvider messages={langs}>
           <ThemeProvider
             attribute="class"

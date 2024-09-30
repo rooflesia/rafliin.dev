@@ -17,11 +17,22 @@ const config = {
         '2xl': '1400px',
       },
     },
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      square: 'square',
+      roman: 'upper-roman',
+    },
     extend: {
       fontFamily: {
-        inter: ['var(--font-inter)'],
+        body: ['"Inter"', 'sans-serif'],
+        sans: ['var(--font-inter)', 'sans-serif'],
       },
       colors: {
+        beige: '#fefbf6',
+        darkGray: '#1A1A1A',
+        coral: '#FF6F61',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -38,14 +49,6 @@ const config = {
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))',
-        },
-        warning: {
-          DEFAULT: 'hsl(var(--warning))',
-          foreground: 'hsl(var(--warning-foreground))',
-        },
-        positive: {
-          DEFAULT: 'hsl(var(--positive))',
-          foreground: 'hsl(var(--positive-foreground))',
         },
         muted: {
           DEFAULT: 'hsl(var(--muted))',

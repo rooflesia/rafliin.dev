@@ -16,7 +16,7 @@ const Storage = {
         null;
       }
     }
-    return data ? (data as T) : fallback ?? null;
+    return data ? (data as T) : (fallback ?? null);
   },
   set<T>(typ: TstorageType, key: string, data: T): T | null {
     try {

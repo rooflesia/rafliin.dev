@@ -1,200 +1,454 @@
 'use client';
 
-import { Button } from '@/components/atoms';
-import { Card, CardDescription, CardHeader, CardTitle } from '@/components/atoms/card';
-import { Separator } from '@/components/atoms/separator';
-import { Container } from '@/components/molecules';
-import { MainLayout } from '@/components/templates';
-import { useAppDispatch, useAppSelector } from '@/hooks';
-import { addRequestCount, getPost, postPost, subRequestCount } from '@/store/common';
-import { unwrapResult } from '@reduxjs/toolkit';
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Button, Card, Separator } from '@/components/atoms';
+import Image from 'next/image';
+import { useState } from 'react';
+import { ChevronRight } from 'lucide-react';
+
+const experiences = [
+  {
+    icon: '🌍',
+    role: 'Frontend Developer - Fulltime',
+    description:
+      'Handle All Frontend Projects Including Website Development using React (Next.JS), and Mobile Development using Kotlin. Creating and Maintaining apps for goverment website and application, public company website and application.',
+    company: 'PT. Quantus Telematika Indonesia',
+    date: 'August 2021 - January 2023',
+  },
+  {
+    icon: '🚗',
+    role: 'Frontend Developer - Fulltime',
+    description:
+      'Handle Telkom DBT (Digital Business & Technology) Partnership Unit Support Website Application using ReactJS',
+    company: 'PT. Telekomunikasi Indonesia',
+    date: 'September 2023 - September 2024',
+  },
+];
+
+const awards = [
+  {
+    icon: '🥉',
+    title: 'Best 3 Students 2020/2021',
+    description:
+      'Achieving Awards as Top 3 Students at Fakultas Ilmu Terapan Telkom University 2020/2021',
+    event: 'Fakultas Ilmu Terapan - Telkom University',
+    date: '2021',
+  },
+  {
+    icon: '🥈',
+    title: '2nd Place AI4IMPACT SAVE TOURISM GLOBAL CHALLENGE',
+    description:
+      'Achieving 2nd place making a chatbot at AI4IMPACT SAVE TOURISM GLOBAL CHALLENGE with my team as Frontend Engineer',
+    event: 'AI4Impact.org',
+    date: '2021',
+  },
+];
+
+const whatIDo = [
+  {
+    icon: '😎',
+    title: 'End to End Website Application',
+    description: 'Made a fullstack end-to-end website/mobile application',
+  },
+  {
+    icon: '😆',
+    title: 'Company Website Design and Application',
+    description: 'Made a fullstack Company Profile Design and Application',
+  },
+  {
+    icon: '😍',
+    title: 'Landing Page Design and Application',
+    description: 'Made a fullstack Landing Page Design and Application',
+  },
+  {
+    icon: '😁',
+    title: 'Dashboard Design and Application',
+    description: 'Made a fullstack custom Dashboard Design and Application',
+  },
+];
+
+const portofolio = [
+  {
+    // icon: '😎',
+    icon: '/images/rudolf-1.png',
+    title: 'Rudolf ID',
+    description: 'Website Application for Rudolf ID',
+    stack: ['react', 'nextjs', 'tailwind', 'antd'],
+  },
+  {
+    // icon: '😎',
+    icon: '/images/georginapparel-2.png',
+    title: 'Georginapparel',
+    description: 'Landing page B2C for Georgina Apparel',
+    stack: ['react', 'nextjs', 'tailwind'],
+  },
+  {
+    // icon: '😆',
+    icon: '/images/envisions-1.png',
+    title: 'Envisions.id',
+    description: 'Made a Company Profile for Envisions',
+    stack: ['wordpress'],
+  },
+  {
+    // icon: '😍',
+    icon: '/images/ikimodal-salescore.png',
+    title: 'IKI Modal - Loan Application, OJK Monitoring, Escrow Monitoring',
+    description: 'Made a fullstack Website Application about loan application for ikimodal',
+    stack: ['react', 'antd', 'nodejs'],
+  },
+  {
+    // icon: '😁',
+    icon: '/images/isikulkasku-1.png',
+    title: 'Isikulkasku',
+    description: 'Made a fullstack B2C web application using laravel',
+    stack: ['laravel', 'livewire'],
+  },
+  {
+    // icon: '😁',
+    icon: '/images/odissey-1.png',
+    title: 'Odissey',
+    description: 'Create and maintaining support application for telkom unit PAS',
+    stack: ['react', 'bootstrap'],
+  },
+];
+
+const stackImages: { [key: string]: string } = {
+  react: '/images/react.png',
+  nextjs: '/images/next.png',
+  tailwind: '/images/tailwind.png',
+  shadcn: '/images/shadcn.png',
+  laravel: 'images/laravel.png',
+  livewire: 'images/livewire.svg',
+  antd: 'images/antd.svg',
+  nodejs: 'images/nodejs.svg',
+  wordpress: 'images/wordpress.png',
+  bootstrap: 'images/bootstrap.png',
+};
 
 export default function Home() {
-  const t = useTranslations('Home'),
-    dispatch = useAppDispatch(),
-    { request_count, post } = useAppSelector((s) => s.common);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isHoveredAward, setIsHoveredAward] = useState(false);
 
-  const features = [
-    {
-      ic: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg',
-      name: 'Next 14',
-      desc: 'Powerful React framework, with Typescript.',
-    },
-    {
-      ic: 'https://avatars.githubusercontent.com/u/139895814?s=200&v=4',
-      name: 'Shadcn UI',
-      desc: 'Beautifully designed components that you can copy and paste into your apps.',
-    },
-    {
-      ic: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg',
-      name: 'Tailwind CSS',
-      desc: 'A utility-first CSS framework packed with classes',
-    },
-    {
-      ic: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redux/redux-original.svg',
-      name: 'Redux',
-      desc: 'A JS library for predictable and maintainable global state management.',
-    },
-    {
-      ic: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redux/redux-original.svg',
-      name: 'RTK Query',
-      desc: 'Powerful data fetching and caching tool.',
-    },
-    {
-      ic: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/axios/axios-plain.svg',
-      name: 'Axios',
-      desc: 'a promise-based HTTP Client for node.js and the browser.',
-    },
-    {
-      name: 'i18n',
-      desc: 'Internationalization-framework written in and for JavaScript',
-    },
-  ];
-
-  const devFeatures = [
-    {
-      ic: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eslint/eslint-original.svg',
-      name: 'Eslint',
-      desc: 'The pluggable linting utility for JavaScript and JSX',
-    },
-    {
-      ic: '',
-      name: 'Husky',
-      desc: 'Modern native git hooks made easy. Husky enhances your commits and more woof!.',
-    },
-    {
-      ic: '',
-      name: 'Conventional Commit',
-      desc: 'Commitlint checks if your commit messages meet the conventional',
-    },
-
-    {
-      ic: '',
-      name: 'Prettier',
-      desc: 'An opinionated code formatter',
-    },
-  ];
-
-  const testGet = async () => {
-    const action = await dispatch(getPost()),
-      data = unwrapResult(action);
-
-    if (data == null) return;
-    console.log('==== You perform a get request!');
-    console.log('id     : ', data.id);
-    console.log('userId : ', data.userId);
-    console.log('title  : ', data.title);
-    console.log('body   : ', data.body);
+  const handleWhatsAppClick = () => {
+    window.open('https://wa.me/6285174464640', '_blank');
   };
 
-  const testPost = async () => {
-    const action = await dispatch(
-        postPost({
-          userId: 1,
-          title: 'This is awesome',
-          body: 'Next 14 + Typescript + Shadcn by chocoding.in',
-        }),
-      ),
-      data = unwrapResult(action);
-
-    console.log('==== You perform a post request!');
-    console.log('id     : ', data.id);
-    console.log('userId : ', data.userId);
-    console.log('title  : ', data.title);
-    console.log('body   : ', data.body);
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
-    <MainLayout>
-      <Container className="py-8">
-        <h1 className="mb-4 text-center">{t('title')}</h1>
+    <>
+      <header className="w-full bg-beige p-6 text-white">
+        <div className="flex items-center justify-between text-black">
+          {/* Logo */}
+          <div className="ml-8 flex items-start justify-start font-sans text-2xl font-bold">
+            Rooflesia.
+          </div>
 
-        <p className="text-center text-muted-foreground">
-          {t('subtitle', { name: 'Diaz', year: '2024' })}
-        </p>
-      </Container>
+          {/* Navigation */}
+          <nav className="mr-8 flex space-x-8">
+            <a href="#whatido" className="hover:underline">
+              Services
+            </a>
+            <a href="#portofolio" className="hover:underline">
+              Portofolio
+            </a>
+            <a href="/about" className="hover:underline">
+              About me
+            </a>
+            <a href="#contact" className="hover:underline" onClick={handleWhatsAppClick}>
+              Contact me
+            </a>
+          </nav>
+        </div>
+      </header>
+      <div className="flex min-h-screen justify-end bg-beige font-body text-darkGray">
+        {/* Left Column */}
+        <div className="w-3/7 sticky top-0 h-screen p-12">
+          <div className="space-y-4">
+            <Image
+              src="/images/fotoprofil.jpeg"
+              width={240}
+              height={240}
+              alt="Hero Image"
+              className="rounded-lg"
+            />
 
-      <Container>
-        <Separator className="mb-12" />
-
-        <p className="mb-3 text-center">Request count: {request_count}</p>
-        <div className="mb-3 flex flex-wrap justify-center gap-3">
-          <Button variant={'secondary'} onClick={testGet}>
-            Get request
-          </Button>
-          <Button variant={'secondary'} onClick={testPost}>
-            Post request
-          </Button>
-          <Button variant={'secondary'} onClick={() => dispatch(addRequestCount())}>
-            Increment
-          </Button>
-          <Button variant={'secondary'} onClick={() => dispatch(subRequestCount())}>
-            Decrement
-          </Button>
-          <Button variant={'secondary'} asChild>
-            <Link href={'/about'}>About page</Link>
-          </Button>
+            <h1 className="font-sans text-4xl font-bold">Hello!👋</h1>
+            <h1 className="font-sans text-4xl font-bold">I’m Muhammad Rafli Naufal</h1>
+            <p className="font-sans text-xl">Fullstack Developer based in Bandung, Indonesia.</p>
+            <div className="mt-4">
+              <p className="text-md font-sans">📧 : muhamadraflinaufal@gmail.com</p>
+              <p className="w-100 flex items-center">
+                <Image
+                  className="mr-2"
+                  src="/images/linkedin.png"
+                  width={20}
+                  height={20}
+                  alt="Linkedin"
+                />{' '}
+                :{' '}
+                <a
+                  onClick={() =>
+                    window.open('https://www.linkedin.com/in/muhammad-rafli-naufal/', '_blank')
+                  }
+                  className="text-md ml-1 cursor-pointer font-sans hover:underline"
+                >
+                  Muhammad Rafli Naufal
+                </a>
+              </p>
+              <p className="text-md font-sans">☎️ : +62 85174464640</p>
+            </div>
+          </div>
+          <Separator className="my-12 bg-black" />
+          <h2 className="mt-4 w-4/5 font-sans text-4xl font-bold">
+            Passionate creating great experiences for Digital Products.
+          </h2>
+          <div className="space-y-8">
+            <Button
+              size="lg"
+              className="mr-2 rounded-full bg-black font-sans text-white"
+              onClick={handleWhatsAppClick}
+            >
+              I’m Interested!
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="rounded-full border-black bg-beige font-sans text-black"
+              onClick={() => scrollToSection('portofolio')}
+            >
+              See my works
+            </Button>
+          </div>
         </div>
 
-        <>
-          {post && (
-            <Card className="mx-auto w-fit max-w-lg">
-              <CardHeader>
-                <h5 className="text-large">{post.title}</h5>
-                <p className="text-body">{post.body}</p>
-                <p className="text-detail text-muted-foreground">
-                  API from{' '}
-                  <a href="https://jsonplaceholder.typicode.com">
-                    https://jsonplaceholder.typicode.com/guide/
-                  </a>
-                </p>
-              </CardHeader>
-            </Card>
-          )}
-        </>
-      </Container>
-
-      <Container>
-        <h4 className="mb-3 text-muted-foreground">{t('features')}</h4>
-
-        <div className="mb-6 grid grid-cols-2 gap-6 md:grid-cols-3">
-          {features.map((feat, i) => (
-            <Card key={i} className="flex flex-col items-start sm:flex-row">
-              {feat.ic && (
-                <div className="ps-4 pt-5">
-                  <img src={feat.ic} alt="" className="min-w-8 max-w-8" />
+        {/* Right Column */}
+        <motion.div
+          className="w-4/7 space-y-8 overflow-y-scroll p-8"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          {/* Section: Working Experience */}
+          <div className="space-y-4">
+            <div className="flex justify-between" id="working-experiences">
+              <h3 className="text-xl font-semibold">Working Experiences</h3>
+              <h4 className="mr-2 cursor-pointer text-sm font-semibold text-black hover:underline">
+                See More
+              </h4>
+            </div>
+            {experiences.map((exp, index) => (
+              <motion.div
+                key={index}
+                className="flex items-center space-x-4 rounded-full border border-gray-200 bg-white p-4 shadow-sm"
+                onHoverStart={() => setIsHovered(true)}
+                onHoverEnd={() => setIsHovered(false)}
+                initial={{ opacity: 0.9, scale: 1 }}
+                whileHover={{ opacity: 1, scale: 1.05 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
+                {/* Icon */}
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+                  <span className="text-2xl">{exp.icon}</span>{' '}
+                  {/* Replace with img if using actual icons */}
                 </div>
-              )}
-              <CardHeader className="!mt-0">
-                <CardTitle>{feat.name}</CardTitle>
-                <CardDescription>{feat.desc}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
-        </div>
-      </Container>
 
-      <Container>
-        <h4 className="mb-3 text-muted-foreground">{t('development_features')}</h4>
-
-        <div className="mb-6 grid grid-cols-2 gap-6 md:grid-cols-3">
-          {devFeatures.map((feat, i) => (
-            <Card key={i} className="flex flex-col items-start sm:flex-row">
-              {feat.ic && (
-                <div className="ps-4 pt-5">
-                  <img src={feat.ic} alt="" className="min-w-8 max-w-8" />
+                {/* Job Information */}
+                <div className="flex-grow">
+                  <div className="text-lg font-medium text-black text-gray-800">{exp.role}</div>
+                  <div className="text-sm font-bold text-black">{exp.company}</div>
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={isHovered ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="mt-2 text-sm text-gray-600"
+                  >
+                    {exp.description}
+                  </motion.div>
                 </div>
-              )}
-              <CardHeader className="!mt-0">
-                <CardTitle>{feat.name}</CardTitle>
-                <CardDescription>{feat.desc}</CardDescription>
-              </CardHeader>
-            </Card>
-          ))}
+
+                {/* Date */}
+                <div className="whitespace-nowrap text-sm text-gray-500">{exp.date}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Section: Awards & Recognition */}
+          <section className="space-y-4">
+            <div className="flex justify-between">
+              <h3 className="text-xl font-semibold" id="awards">
+                Awards & Recognition
+              </h3>
+              <h4 className="mr-2 cursor-pointer text-sm font-semibold text-black hover:underline">
+                See More
+              </h4>
+            </div>
+            {awards.map((exp, index) => (
+              <motion.div
+                key={index}
+                className="flex items-center space-x-4 rounded-full border border-gray-200 bg-white p-4 shadow-sm"
+                onHoverStart={() => setIsHoveredAward(true)}
+                onHoverEnd={() => setIsHoveredAward(false)}
+                initial={{ opacity: 0.9, scale: 1 }}
+                whileHover={{ opacity: 1, scale: 1.05 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              >
+                {/* Icon */}
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+                  <span className="text-2xl">{exp.icon}</span>{' '}
+                  {/* Replace with img if using actual icons */}
+                </div>
+
+                {/* Job Information */}
+                <div className="flex-grow">
+                  <div className="text-lg font-medium text-gray-800">{exp.title}</div>
+                  <div className="text-sm font-bold text-black">{exp.event}</div>
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={
+                      isHoveredAward ? { opacity: 1, height: 'auto' } : { opacity: 0, height: 0 }
+                    }
+                    transition={{ duration: 0.3 }}
+                    className="mt-2 text-sm text-gray-600"
+                  >
+                    {exp.description}
+                  </motion.div>
+                </div>
+
+                {/* Date */}
+                <div className="whitespace-nowrap text-sm text-gray-500">{exp.date}</div>
+              </motion.div>
+            ))}
+          </section>
+
+          {/* Section: What I Do */}
+          <section className="space-y-4">
+            <div className="flex justify-between">
+              <h3 className="text-xl font-semibold" id="whatido">
+                What I Do
+              </h3>
+              <h4 className="mr-2 cursor-pointer text-sm font-semibold text-black hover:underline">
+                See More
+              </h4>
+            </div>
+            {whatIDo.map((exp, index) => (
+              <div
+                key={index}
+                className="flex items-center space-x-4 rounded-full border border-gray-200 bg-white p-4 shadow-sm"
+              >
+                {/* Icon */}
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+                  <span className="text-2xl">{exp.icon}</span>{' '}
+                  {/* Replace with img if using actual icons */}
+                </div>
+
+                {/* Job Information */}
+                <div className="flex-grow">
+                  <div className="text-lg font-medium text-gray-800">{exp.title}</div>
+                  <div className="mt-4 text-sm text-gray-500">{exp.description}</div>
+                </div>
+
+                <div className="whitespace-nowrap text-sm text-gray-500">
+                  <ChevronRight className="mr-4" />
+                </div>
+              </div>
+            ))}
+          </section>
+
+          {/* Section: Selected Works */}
+          <section className="space-y-4">
+            <div className="flex justify-between">
+              <h3 className="text-xl font-semibold" id="portofolio">
+                Portofolio
+              </h3>
+              <h4 className="mr-2 cursor-pointer text-sm font-semibold text-black hover:underline">
+                See More
+              </h4>
+            </div>
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+              {portofolio.map((item, key) => (
+                <Card key={key} className="rounded-md bg-white p-4 text-darkGray shadow-lg">
+                  <Image
+                    src={item.icon}
+                    alt="Work 1"
+                    width={600}
+                    height={400}
+                    className="rounded-md"
+                  />
+                  <h4 className="mt-2 font-semibold">{item.title}</h4>
+                  <p>{item.description}</p>
+                  <div className="mt-4 flex space-x-2">
+                    {item.stack.map((tech, idx) => (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img key={idx} src={stackImages[tech]} alt={tech} className="mr-2 h-6 w-6" />
+                    ))}
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </section>
+        </motion.div>
+      </div>
+      <footer className="w-full bg-black py-6 text-white">
+        <div className="container mx-auto flex flex-col items-center justify-between md:flex-row">
+          {/* Footer Content */}
+          <div className="flex items-center space-x-4">
+            {/* Avatar */}
+            <img
+              src="/images/fotoprofil.jpeg"
+              alt="Profile Picture"
+              className="h-12 w-12 rounded-full"
+            />
+            {/* <Image src="/images/fotoprofil.jpeg" width={240} height={240} alt="Hero Image" className="rounded-lg" /> */}
+
+            {/* Text */}
+            <div>
+              <p className="text-sm font-medium">Muhammad Rafli Naufal</p>
+              <p className="text-sm text-gray-400">Fullstack Developer</p>
+            </div>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="mt-4 flex space-x-8 md:mt-0">
+            <a
+              href="#services"
+              className="hover:underline"
+              onClick={() => scrollToSection('whatido')}
+            >
+              Services
+            </a>
+            <a
+              href="#case-studies"
+              className="hover:underline"
+              onClick={() => scrollToSection('portofolio')}
+            >
+              Portofolio
+            </a>
+            <a href="#about" className="hover:underline">
+              About
+            </a>
+            <a href="#contact" className="hover:underline" onClick={handleWhatsAppClick}>
+              Contact
+            </a>
+          </nav>
+
+          {/* CTA Button */}
+          <div className="mt-4 md:mt-0">
+            <Button
+              variant="outline"
+              className="border-white text-black"
+              onClick={handleWhatsAppClick}
+            >
+              Talk with me
+            </Button>
+          </div>
         </div>
-      </Container>
-    </MainLayout>
+      </footer>
+    </>
   );
 }
