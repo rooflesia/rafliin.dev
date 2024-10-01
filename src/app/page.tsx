@@ -92,14 +92,15 @@ const portofolio = [
   {
     // icon: '😍',
     icon: '/images/ikimodal-salescore.png',
-    title: 'IKI Modal - Loan Application, OJK Monitoring, Escrow Monitoring',
-    description: 'Made a fullstack Website Application about loan application for ikimodal',
+    title: 'IKI Modal - Loan Application, OJK Reporting, Escrow Monitoring',
+    description:
+      'Made a fullstack Website Application about loan application for PT. Iki Karunia Indonesia',
     stack: ['react', 'antd', 'nodejs'],
   },
   {
     // icon: '😁',
     icon: '/images/isikulkasku-1.png',
-    title: 'Isikulkasku',
+    title: 'Foralifecycle',
     description: 'Made a fullstack B2C web application using laravel',
     stack: ['laravel', 'livewire'],
   },
@@ -107,7 +108,7 @@ const portofolio = [
     // icon: '😁',
     icon: '/images/odissey-1.png',
     title: 'Odissey',
-    description: 'Create and maintaining support application for telkom unit PAS',
+    description: 'Create and maintaining support application for Partnership Unit Telkom Indonesia',
     stack: ['react', 'bootstrap'],
   },
 ];
@@ -152,7 +153,7 @@ export default function Home() {
 
   return (
     <>
-      <header className={'w-full bg-beige p-6 text-white'}>
+      <header className={'w-full bg-zinc-100 p-6 text-white'}>
         <div className="flex items-center justify-between text-black">
           {/* Logo */}
           <div className={`ml-8 flex items-start justify-start font-sans text-2xl font-bold`}>
@@ -180,7 +181,7 @@ export default function Home() {
           )}
         </div>
       </header>
-      <div className="flex flex-col bg-beige font-body text-darkGray lg:min-h-screen lg:flex-row lg:justify-end">
+      <div className="flex flex-col bg-zinc-100 font-body text-darkGray lg:min-h-screen lg:flex-row lg:justify-end">
         {/* Left Column */}
         <div className="lg:w-3/7 top-0 w-full p-12 lg:sticky lg:mb-8 lg:h-screen">
           <div className="space-y-4">
