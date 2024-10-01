@@ -178,7 +178,7 @@ export default function Home() {
       </header>
       <div className="flex flex-col bg-beige font-body text-darkGray lg:min-h-screen lg:flex-row lg:justify-end">
         {/* Left Column */}
-        <div className="lg:w-3/7 top-0 mb-8 h-screen w-full p-12 lg:sticky">
+        <div className="lg:w-3/7 top-0 w-full p-12 lg:sticky lg:mb-8 lg:h-screen">
           <div className="space-y-4">
             <Image
               src="/images/fotoprofil.jpeg"
@@ -215,28 +215,33 @@ export default function Home() {
             </div>
           </div>
           <Separator className="my-12 bg-black" />
-          <h2 className="mt-4 w-4/5 font-sans text-4xl font-bold">
-            Passionate creating great experiences for Digital Products.
-          </h2>
-          <div className="space-y-8">
-            <Button
-              size="lg"
-              className="mr-2 rounded-full bg-black font-sans text-white"
-              onClick={handleWhatsAppClick}
-            >
-              I’m Interested!
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="rounded-full border-black bg-beige font-sans text-black"
-              onClick={() => scrollToSection('portofolio')}
-            >
-              See my works
-            </Button>
-          </div>
+          {!isMobile ? (
+            <div>
+              <h2 className="mt-4 w-4/5 font-sans text-4xl font-bold">
+                Passionate creating great experiences for Digital Products.
+              </h2>
+              <div className="space-y-8">
+                <Button
+                  size="lg"
+                  className="mr-2 rounded-full bg-black font-sans text-white"
+                  onClick={handleWhatsAppClick}
+                >
+                  I’m Interested!
+                </Button>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="rounded-full border-black bg-beige font-sans text-black"
+                  onClick={() => scrollToSection('portofolio')}
+                >
+                  See my works
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
-
         {/* Right Column */}
         <motion.div
           className="lg:w-4/7 w-full space-y-8 overflow-y-scroll p-8"
