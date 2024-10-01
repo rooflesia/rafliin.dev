@@ -160,20 +160,24 @@ export default function Home() {
           </div>
 
           {/* Navigation */}
-          <nav className={`mr-8 flex space-x-8 ${isMobile ? 'items-center' : 'items-start'}`}>
-            <a href="#whatido" className="hover:underline">
-              Services
-            </a>
-            <a href="#portofolio" className="hover:underline">
-              Portofolio
-            </a>
-            <a href="/about" className="hover:underline">
-              About
-            </a>
-            <a href="#contact" className="hover:underline" onClick={handleWhatsAppClick}>
-              Contact
-            </a>
-          </nav>
+          {!isMobile ? (
+            <nav className={`mr-8 flex space-x-8 ${isMobile ? 'items-center' : 'items-start'}`}>
+              <a href="#whatido" className="hover:underline">
+                Services
+              </a>
+              <a href="#portofolio" className="hover:underline">
+                Portofolio
+              </a>
+              <a href="/about" className="hover:underline">
+                About
+              </a>
+              <a href="#contact" className="hover:underline" onClick={handleWhatsAppClick}>
+                Contact
+              </a>
+            </nav>
+          ) : (
+            <div></div>
+          )}
         </div>
       </header>
       <div className="flex flex-col bg-beige font-body text-darkGray lg:min-h-screen lg:flex-row lg:justify-end">
