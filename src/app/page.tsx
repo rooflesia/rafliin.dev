@@ -292,7 +292,11 @@ export default function Home() {
                 </div>
 
                 {/* Date */}
-                <div className="whitespace-nowrap text-sm text-gray-500">{exp.date}</div>
+                {!isMobile ? (
+                  <div className="whitespace-nowrap text-sm text-gray-500">{exp.date}</div>
+                ) : (
+                  <div></div>
+                )}
               </motion.div>
             ))}
           </div>
@@ -461,7 +465,7 @@ export default function Home() {
           <div className="mt-4 md:mt-0">
             <Button
               variant="outline"
-              className="border-white text-black"
+              className="border-white bg-white text-black"
               onClick={handleWhatsAppClick}
             >
               Talk with me
