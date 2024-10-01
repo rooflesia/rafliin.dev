@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { Button, Card, Separator } from '@/components/atoms';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 
 const experiences = [
@@ -128,6 +128,16 @@ const stackImages: { [key: string]: string } = {
 export default function Home() {
   const [isHovered, setIsHovered] = useState(false);
   const [isHoveredAward, setIsHoveredAward] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleWhatsAppClick = () => {
     window.open('https://wa.me/6285174464640', '_blank');
@@ -142,15 +152,15 @@ export default function Home() {
 
   return (
     <>
-      <header className="w-full bg-beige p-6 text-white">
+      <header className={'w-full bg-beige p-6 text-white'}>
         <div className="flex items-center justify-between text-black">
           {/* Logo */}
-          <div className="ml-8 flex items-start justify-start font-sans text-2xl font-bold">
+          <div className={`ml-8 flex items-start justify-start font-sans text-2xl font-bold`}>
             Rooflesia.
           </div>
 
           {/* Navigation */}
-          <nav className="mr-8 flex space-x-8">
+          <nav className={`mr-8 flex space-x-8 ${isMobile ? 'items-center' : 'items-start'}`}>
             <a href="#whatido" className="hover:underline">
               Services
             </a>
@@ -158,17 +168,17 @@ export default function Home() {
               Portofolio
             </a>
             <a href="/about" className="hover:underline">
-              About me
+              About
             </a>
             <a href="#contact" className="hover:underline" onClick={handleWhatsAppClick}>
-              Contact me
+              Contact
             </a>
           </nav>
         </div>
       </header>
-      <div className="flex min-h-screen justify-end bg-beige font-body text-darkGray">
+      <div className="flex flex-col bg-beige font-body text-darkGray lg:min-h-screen lg:flex-row lg:justify-end">
         {/* Left Column */}
-        <div className="w-3/7 sticky top-0 h-screen p-12">
+        <div className="lg:w-3/7 top-0 mb-8 h-screen w-full p-12 lg:sticky">
           <div className="space-y-4">
             <Image
               src="/images/fotoprofil.jpeg"
@@ -229,7 +239,7 @@ export default function Home() {
 
         {/* Right Column */}
         <motion.div
-          className="w-4/7 space-y-8 overflow-y-scroll p-8"
+          className="lg:w-4/7 w-full space-y-8 overflow-y-scroll p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
@@ -399,6 +409,7 @@ export default function Home() {
           {/* Footer Content */}
           <div className="flex items-center space-x-4">
             {/* Avatar */}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/fotoprofil.jpeg"
               alt="Profile Picture"
