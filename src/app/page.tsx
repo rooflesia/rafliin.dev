@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Button, Card, Separator } from '@/components/atoms';
+import { Badge, Button, Card, Separator } from '@/components/atoms';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
@@ -64,6 +64,44 @@ const whatIDo = [
     icon: '😁',
     title: 'Dashboard Design and Application',
     description: 'Made a fullstack custom Dashboard Design and Application',
+  },
+];
+
+const skills = [
+  {
+    icon: '😎',
+    title: 'ReactJS',
+    type: 'language',
+  },
+  {
+    icon: '😆',
+    title: 'VueJS',
+    type: 'language',
+  },
+  {
+    icon: '😍',
+    title: 'Laravel',
+    type: 'language',
+  },
+  {
+    icon: '😁',
+    title: 'NodeJS',
+    type: 'language',
+  },
+  {
+    icon: '😁',
+    title: 'Figma',
+    type: 'language',
+  },
+  {
+    icon: '😎',
+    title: 'Bootstrap',
+    type: 'styles',
+  },
+  {
+    icon: '😆',
+    title: 'TailwindCSS',
+    type: 'styles',
   },
 ];
 
@@ -163,14 +201,8 @@ export default function Home() {
           {/* Navigation */}
           {!isMobile ? (
             <nav className={`mr-8 flex space-x-8 ${isMobile ? 'items-center' : 'items-start'}`}>
-              <a href="#whatido" className="hover:underline">
-                Services
-              </a>
               <a href="#portofolio" className="hover:underline">
                 Portofolio
-              </a>
-              <a href="/about" className="hover:underline">
-                About
               </a>
               <a href="#contact" className="hover:underline" onClick={handleWhatsAppClick}>
                 Contact
@@ -350,13 +382,30 @@ export default function Home() {
             ))}
           </section>
 
+          {/* Section: Skills */}
+          <section className="space-y-4">
+            <div className="flex justify-between">
+              <h3 className="text-xl font-semibold" id="whatido">
+                Skills
+              </h3>
+              <h4 className="mr-2 text-sm font-semibold text-black hover:cursor-not-allowed">
+                See More
+              </h4>
+            </div>
+            {skills.map((exp, index) => (
+              <Badge key={index} variant="outline" className="mr-2 bg-white px-4 py-2 shadow-sm">
+                {exp.title}
+              </Badge>
+            ))}
+          </section>
+
           {/* Section: What I Do */}
           <section className="space-y-4">
             <div className="flex justify-between">
               <h3 className="text-xl font-semibold" id="whatido">
                 What I Do
               </h3>
-              <h4 className="mr-2 cursor-pointer text-sm font-semibold text-black hover:underline">
+              <h4 className="mr-2 text-sm font-semibold text-black hover:cursor-not-allowed">
                 See More
               </h4>
             </div>
@@ -441,21 +490,11 @@ export default function Home() {
           {/* Navigation Links */}
           <nav className="mt-4 flex space-x-8 md:mt-0">
             <a
-              href="#services"
-              className="hover:underline"
-              onClick={() => scrollToSection('whatido')}
-            >
-              Services
-            </a>
-            <a
               href="#case-studies"
               className="hover:underline"
               onClick={() => scrollToSection('portofolio')}
             >
               Portofolio
-            </a>
-            <a href="#about" className="hover:underline">
-              About
             </a>
             <a href="#contact" className="hover:underline" onClick={handleWhatsAppClick}>
               Contact

@@ -27,7 +27,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={interFont.variable}>
       <head>
-        <link rel="icon" href="/images/logo-white.svg" sizes="any" />
+        <link rel="icon" href="/images/circle-fotoprofil-svg.svg" sizes="any" />
       </head>
       <body className="font-inter overflow-x-hidden">
         <NextIntlClientProvider messages={langs}>
