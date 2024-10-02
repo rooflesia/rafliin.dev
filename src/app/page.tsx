@@ -182,6 +182,13 @@ export default function Home() {
     window.open('https://wa.me/6285174464640', '_blank');
   };
 
+  const handleCVClick = () => {
+    window.open(
+      'https://docs.google.com/document/d/1bYSIzp9mRiG4cxsL_DotRtwlJtS1nHr6a0mUndeVpN8/edit?usp=sharing',
+      '_blank',
+    );
+  };
+
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -269,9 +276,9 @@ export default function Home() {
                   size="lg"
                   variant="outline"
                   className="rounded-full border-black bg-beige font-sans text-black"
-                  onClick={() => scrollToSection('portofolio')}
+                  onClick={handleCVClick}
                 >
-                  See my works
+                  See my CV
                 </Button>
               </div>
             </div>
@@ -393,7 +400,11 @@ export default function Home() {
               </h4>
             </div>
             {skills.map((exp, index) => (
-              <Badge key={index} variant="outline" className="mr-2 bg-white px-4 py-2 shadow-sm">
+              <Badge
+                key={index}
+                variant="outline"
+                className="mr-2 bg-white px-4 py-2 text-black shadow-sm"
+              >
                 {exp.title}
               </Badge>
             ))}
