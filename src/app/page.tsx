@@ -1,10 +1,10 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Badge, Button, Card, Separator } from '@/components/atoms';
+import { Badge, Button, Card } from '@/components/atoms';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Linkedin, Mail, PhoneCall } from 'lucide-react';
 
 const experiences = [
   {
@@ -169,6 +169,25 @@ export default function Home() {
   const [isHoveredAward, setIsHoveredAward] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
+  const [dateTime, setDateTime] = useState('');
+  const [timeZone] = useState('Asia/Jakarta');
+
+  useEffect(() => {
+    const updateDateTime = () => {
+      const now = new Date();
+      const formattedDateTime = now.toLocaleString('en-EN', {
+        timeZone,
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+      });
+      setDateTime(formattedDateTime);
+    };
+
+    const intervalId = setInterval(updateDateTime, 1000);
+    return () => clearInterval(intervalId);
+  }, [timeZone]);
+
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -198,105 +217,128 @@ export default function Home() {
 
   return (
     <>
-      <header className={'w-full bg-zinc-100 p-6 text-white'}>
+      <header className={'container mx-auto bg-white px-8 py-6 text-white'}>
         <div className="flex items-center justify-between text-black">
           {/* Logo */}
-          <div className={`ml-8 flex items-start justify-start font-sans text-2xl font-bold`}>
-            Rooflesia.
+          <div className="flex items-center justify-start">
+            <div className={`font-sans text-2xl font-bold`}>Rooflesia.</div>
+            <div className="h-100 ml-12 flex">
+              {!isMobile ? (
+                <nav className={`flex space-x-8`}>
+                  <a href="#portofolio" className="hover:underline">
+                    Portofolio
+                  </a>
+                  <a href="#contact" className="hover:underline" onClick={handleWhatsAppClick}>
+                    Contact
+                  </a>
+                </nav>
+              ) : (
+                <div></div>
+              )}
+            </div>
           </div>
 
           {/* Navigation */}
-          {!isMobile ? (
-            <nav className={`mr-8 flex space-x-8 ${isMobile ? 'items-center' : 'items-start'}`}>
-              <a href="#portofolio" className="hover:underline">
-                Portofolio
-              </a>
-              <a href="#contact" className="hover:underline" onClick={handleWhatsAppClick}>
-                Contact
-              </a>
-            </nav>
-          ) : (
-            <div></div>
-          )}
+          <div className={`flex space-x-8 ${isMobile ? 'items-center' : 'items-start'}`}>
+            <div className="mr-8">
+              <div className="text-l font-sans">Jakarta, Indonesia</div>
+              <p className="font-bold">{dateTime}</p>
+            </div>
+            <Button
+              size="lg"
+              className="rounded-full bg-black font-sans text-white"
+              onClick={handleWhatsAppClick}
+            >
+              Click Me, Im Power Button! 🚀
+            </Button>
+          </div>
         </div>
       </header>
-      <div className="flex flex-col bg-zinc-100 font-body text-darkGray lg:min-h-screen lg:flex-row lg:justify-end">
-        {/* Left Column */}
-        <div className="lg:w-3/7 top-0 w-full p-12 lg:sticky lg:mb-8 lg:h-screen">
-          <div className="space-y-4">
-            <Image
-              src="/images/fotoprofil.jpeg"
-              width={240}
-              height={240}
-              alt="Hero Image"
-              className="rounded-lg"
-            />
+      <div className="container mx-auto mb-4 px-8 pt-16">
+        <div className="flex items-center justify-center bg-white text-black">
+          <div className="lg:w-3/7 top-0 flex w-full justify-start">
+            <div className="space-y-4">
+              <Image
+                src="/images/fotoprofil.jpeg"
+                width={240}
+                height={240}
+                alt="Hero Image"
+                className="rounded-lg"
+              />
 
-            <h1 className="font-sans text-4xl font-bold">Hello!👋</h1>
-            <h1 className="font-sans text-4xl font-bold">I’m Muhammad Rafli Naufal</h1>
-            <p className="font-sans text-xl">Fullstack Developer based in Bandung, Indonesia.</p>
-            <div className="mt-4">
-              <p className="text-md font-sans">📧 : muhamadraflinaufal@gmail.com</p>
-              <p className="w-100 flex items-center">
-                <Image
-                  className="mr-2"
-                  src="/images/linkedin.png"
-                  width={20}
-                  height={20}
-                  alt="Linkedin"
-                />{' '}
-                :{' '}
-                <a
-                  onClick={() =>
-                    window.open('https://www.linkedin.com/in/muhammad-rafli-naufal/', '_blank')
-                  }
-                  className="text-md ml-1 cursor-pointer font-sans hover:underline"
-                >
-                  Muhammad Rafli Naufal
-                </a>
-              </p>
-              <p className="text-md font-sans">☎️ : +62 85174464640</p>
-            </div>
-          </div>
-          <Separator className="my-12 bg-black" />
-          {!isMobile ? (
-            <div>
-              <h2 className="mt-4 w-4/5 font-sans text-4xl font-bold">
-                Passionate creating great experiences for Digital Products.
-              </h2>
-              <div className="space-y-8">
-                <Button
-                  size="lg"
-                  className="mr-2 rounded-full bg-black font-sans text-white"
-                  onClick={handleWhatsAppClick}
-                >
-                  I’m Interested!
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="rounded-full border-black bg-beige font-sans text-black"
-                  onClick={handleCVClick}
-                >
-                  See my CV
-                </Button>
+              <h1 className="font-sans text-4xl font-medium">Hello!👋</h1>
+              <h1 className="font-sans text-4xl font-medium">I’m Muhammad Rafli Naufal</h1>
+              <p className="font-sans text-xl">Fullstack Developer based in Bandung, Indonesia.</p>
+              <div className="mt-4 flex items-start">
+                <div className="mb-4 flex items-end space-x-4">
+                  <Button
+                    size={'circle'}
+                    variant="outline"
+                    onClick={() =>
+                      window.open('https://www.linkedin.com/in/muhammad-rafli-naufal/', '_blank')
+                    }
+                  >
+                    <Linkedin strokeWidth={1} />
+                  </Button>
+                  <Button
+                    size={'circle'}
+                    variant="outline"
+                    onClick={() => window.open('https://wa.me/6285174464640', '_blank')}
+                  >
+                    <PhoneCall strokeWidth={1} />
+                  </Button>
+                  <Button
+                    size={'circle'}
+                    variant="outline"
+                    onClick={() =>
+                      window.open(
+                        'mailto:muhamadraflinaufal@gmail.com?subject=Hallo Rafli!',
+                        '_blank',
+                      )
+                    }
+                  >
+                    <Mail strokeWidth={1} />
+                  </Button>
+                </div>
               </div>
             </div>
-          ) : (
-            <div></div>
-          )}
+          </div>
+          <div className="lg:w-4/7 w-full text-right">
+            {!isMobile ? (
+              <div className="flex flex-col items-end">
+                <h2 className="mt-4 w-4/5 font-sans text-4xl font-bold leading-relaxed">
+                  Passionate creating great experiences for Digital Products.
+                </h2>
+                <div className="space-y-8">
+                  <Button
+                    size="lg"
+                    className="mr-2 rounded-full bg-black font-sans text-white"
+                    onClick={handleWhatsAppClick}
+                  >
+                    I’m Interested!
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="rounded-full border-black bg-beige font-sans text-black"
+                    onClick={handleCVClick}
+                  >
+                    See my CV
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div></div>
+            )}
+          </div>
         </div>
-        {/* Right Column */}
-        <motion.div
-          className="lg:w-4/7 w-full space-y-8 overflow-y-scroll p-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
+      </div>
+      <div className="mt-8 bg-gray-100">
+        <div className="container mx-auto px-8 py-16">
           {/* Section: Working Experience */}
           <div className="space-y-4">
             <div className="flex justify-between" id="working-experiences">
-              <h3 className="text-xl font-semibold">Working Experiences</h3>
+              <h3 className="text-xl font-semibold text-black">Working Experiences</h3>
               <h4 className="mr-2 cursor-pointer text-sm font-semibold text-black hover:underline">
                 See More
               </h4>
@@ -304,22 +346,21 @@ export default function Home() {
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}
-                className="flex items-center space-x-4 rounded-full border border-gray-200 bg-white p-4 shadow-sm"
+                className="flex items-center space-x-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
                 onHoverStart={() => setIsHovered(true)}
                 onHoverEnd={() => setIsHovered(false)}
                 initial={{ opacity: 0.9, scale: 1 }}
-                whileHover={{ opacity: 1, scale: 1.05 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
                 {/* Icon */}
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full">
                   <span className="text-2xl">{exp.icon}</span>{' '}
                   {/* Replace with img if using actual icons */}
                 </div>
 
                 {/* Job Information */}
                 <div className="flex-grow">
-                  <div className="text-lg font-medium text-black text-gray-800">{exp.role}</div>
+                  <div className="text-lg font-medium text-black">{exp.role}</div>
                   <div className="text-sm font-bold text-black">{exp.company}</div>
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
@@ -342,9 +383,9 @@ export default function Home() {
           </div>
 
           {/* Section: Awards & Recognition */}
-          <section className="space-y-4">
+          <section className="mt-8 space-y-4">
             <div className="flex justify-between">
-              <h3 className="text-xl font-semibold" id="awards">
+              <h3 className="text-xl font-semibold text-black" id="awards">
                 Awards & Recognition
               </h3>
               <h4 className="mr-2 cursor-pointer text-sm font-semibold text-black hover:underline">
@@ -354,11 +395,10 @@ export default function Home() {
             {awards.map((exp, index) => (
               <motion.div
                 key={index}
-                className="flex items-center space-x-4 rounded-full border border-gray-200 bg-white p-4 shadow-sm"
+                className="flex items-center space-x-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
                 onHoverStart={() => setIsHoveredAward(true)}
                 onHoverEnd={() => setIsHoveredAward(false)}
                 initial={{ opacity: 0.9, scale: 1 }}
-                whileHover={{ opacity: 1, scale: 1.05 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 20 }}
               >
                 {/* Icon */}
@@ -390,9 +430,9 @@ export default function Home() {
           </section>
 
           {/* Section: Skills */}
-          <section className="space-y-4">
+          <section className="mt-8 space-y-4">
             <div className="flex justify-between">
-              <h3 className="text-xl font-semibold" id="whatido">
+              <h3 className="text-xl font-semibold text-black" id="whatido">
                 Skills
               </h3>
               <h4 className="mr-2 text-sm font-semibold text-black hover:cursor-not-allowed">
@@ -411,9 +451,9 @@ export default function Home() {
           </section>
 
           {/* Section: What I Do */}
-          <section className="space-y-4">
+          <section className="mt-8 space-y-4">
             <div className="flex justify-between">
-              <h3 className="text-xl font-semibold" id="whatido">
+              <h3 className="text-xl font-semibold text-black" id="whatido">
                 What I Do
               </h3>
               <h4 className="mr-2 text-sm font-semibold text-black hover:cursor-not-allowed">
@@ -423,7 +463,7 @@ export default function Home() {
             {whatIDo.map((exp, index) => (
               <div
                 key={index}
-                className="flex items-center space-x-4 rounded-full border border-gray-200 bg-white p-4 shadow-sm"
+                className="flex items-center space-x-4 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
               >
                 {/* Icon */}
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100">
@@ -445,9 +485,9 @@ export default function Home() {
           </section>
 
           {/* Section: Selected Works */}
-          <section className="space-y-4">
+          <section className="mt-8 space-y-4">
             <div className="flex justify-between">
-              <h3 className="text-xl font-semibold" id="portofolio">
+              <h3 className="text-xl font-semibold text-black" id="portofolio">
                 Portofolio
               </h3>
               <h4 className="mr-2 cursor-pointer text-sm font-semibold text-black hover:underline">
@@ -456,7 +496,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {portofolio.map((item, key) => (
-                <Card key={key} className="rounded-md bg-white p-4 text-darkGray shadow-lg">
+                <Card key={key} className="rounded-2xl bg-white p-4 text-darkGray">
                   <Image
                     src={item.icon}
                     alt="Work 1"
@@ -476,7 +516,7 @@ export default function Home() {
               ))}
             </div>
           </section>
-        </motion.div>
+        </div>
       </div>
       <footer className="w-full bg-black py-6 text-white">
         <div className="container mx-auto flex flex-col items-center justify-between md:flex-row">

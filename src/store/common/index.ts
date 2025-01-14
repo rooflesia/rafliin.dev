@@ -30,11 +30,11 @@ export const commonSlice = createSlice({
     builder.addCase(postPost.pending, (state) => {
       state.post = null;
     });
-    builder.addCase(getPost.fulfilled, (state, { payload, type }) => {
+    builder.addCase(getPost.fulfilled, (state, { payload }) => {
       state.post = payload;
       state.request_count += 1;
     });
-    builder.addCase(postPost.fulfilled, (state, { payload, type }) => {
+    builder.addCase(postPost.fulfilled, (state, { payload }) => {
       state.post = payload;
       state.request_count += 1;
     });
