@@ -218,7 +218,7 @@ export default function Home() {
   return (
     <>
       <header className={'container mx-auto bg-white px-8 py-6 text-white'}>
-        <div className="flex items-center justify-between text-black">
+        <div className={`flex items-center justify-between text-black`}>
           {/* Logo */}
           <div className="flex items-center justify-start">
             <div className={`font-sans text-2xl font-bold`}>Rooflesia.</div>
@@ -239,25 +239,36 @@ export default function Home() {
           </div>
 
           {/* Navigation */}
-          <div className={`flex space-x-8 ${isMobile ? 'items-center' : 'items-start'}`}>
-            <div className="mr-8">
-              <div className="text-l font-sans">Jakarta, Indonesia</div>
-              <p className="font-bold">{dateTime}</p>
+          {!isMobile ? (
+            <div className={`flex space-x-8 ${isMobile ? 'items-center' : 'items-start'}`}>
+              <div className="mr-8">
+                <div className="text-l font-sans">Jakarta, Indonesia</div>
+                <p className="font-bold">{dateTime}</p>
+              </div>
+              <Button
+                size="lg"
+                className="rounded-full bg-black font-sans text-white"
+                onClick={handleWhatsAppClick}
+              >
+                Click Me, Im Power Button! 🚀
+              </Button>
             </div>
-            <Button
-              size="lg"
-              className="rounded-full bg-black font-sans text-white"
-              onClick={handleWhatsAppClick}
-            >
-              Click Me, Im Power Button! 🚀
-            </Button>
-          </div>
+          ) : (
+            <div className="flex space-x-8">
+              <div className="mr-8">
+                <div className="text-l font-sans">Jakarta, Indonesia</div>
+                <p className="font-bold">{dateTime}</p>
+              </div>
+            </div>
+          )}
         </div>
       </header>
-      <div className="container mx-auto mb-4 px-8 pt-16">
+      <div className={`container mx-auto mb-4 px-8 ${!isMobile ? 'pt-16' : 'pt-1'}`}>
         <div className="flex items-center justify-center bg-white text-black">
-          <div className="lg:w-3/7 top-0 flex w-full justify-start">
-            <div className="space-y-4">
+          <div className={`${!isMobile ? 'lg:w-3/7 top-0 flex justify-start' : 'w-full'}`}>
+            <div
+              className={`space-y-4 ${isMobile ? 'flex flex-col items-center justify-center' : ''}`}
+            >
               <Image
                 src="/images/fotoprofil.jpeg"
                 width={240}
@@ -303,8 +314,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="lg:w-4/7 w-full text-right">
-            {!isMobile ? (
+          {!isMobile ? (
+            <div className="lg:w-4/7 w-full text-right">
               <div className="flex flex-col items-end">
                 <h2 className="mt-4 w-4/5 font-sans text-4xl font-bold leading-relaxed">
                   Passionate creating great experiences for Digital Products.
@@ -327,10 +338,10 @@ export default function Home() {
                   </Button>
                 </div>
               </div>
-            ) : (
-              <div></div>
-            )}
-          </div>
+            </div>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
       <div className="mt-8 bg-gray-100">
