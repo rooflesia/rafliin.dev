@@ -245,13 +245,13 @@ export default function Home() {
                 <div className="text-l font-sans">Jakarta, Indonesia</div>
                 <p className="font-bold">{dateTime}</p>
               </div>
-              <Button
+              {/* <Button
                 size="lg"
                 className="rounded-full bg-black font-sans text-white"
                 onClick={handleWhatsAppClick}
               >
                 Click Me, Im Power Button! 🚀
-              </Button>
+              </Button> */}
             </div>
           ) : (
             <div className="flex space-x-8">
