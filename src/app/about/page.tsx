@@ -42,7 +42,7 @@ export default function About() {
         <div className="w-3/7 sticky top-0 h-screen p-12">
           <div className="space-y-4">
             <Image
-              src="/images/fotoprofil.jpeg"
+              src="/images/profilez.jpg"
               width={240}
               height={240}
               alt="Hero Image"
