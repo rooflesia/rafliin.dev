@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/atoms';
 import Image from 'next/image';
-import { ArrowUpRight, Quote } from 'lucide-react';
+import { ArrowUpRight, Linkedin, Instagram, Mail } from 'lucide-react';
 
 const services = [
   {
@@ -45,10 +45,18 @@ const services = [
 
 const experiences = [
   {
+    icon: '✈️',
+    role: 'Software Engineer Lead',
+    description:
+      'Leading the development of SATU Digital Creative Web & Apps Development Team. Collaborating with cross-functional teams to ensure high-quality deliverables and continuous improvement. Also helping Duluin Group in building and maintaining internal tools and applications to streamline operations and enhance productivity.',
+    company: 'Satu Digital Creative',
+    date: 'October 2025 - Present',
+  },
+  {
     icon: '💼',
     role: 'Fullstack Developer',
     description:
-      'Developing and maintaining end-to-end Duluin HRMS Web and App for managing Employee Data, Attendance, Claim, Leaves, Payroll, and Performance Reviews. Utilizing technologies such as React, Next.js, Laravel, Node.js, and MySQL with microservices to build scalable and efficient solutions.',
+      'Developing and maintaining end-to-end Duluin HR Management System Web and App for managing Employee Data, Attendance, Claim, Leaves, Payroll, and Performance Reviews. Utilizing technologies such as React, Next.js, Laravel, Node.js, and MySQL with microservices to build scalable and efficient solutions.',
     company: 'Duluin Group',
     date: 'April 2025 - Present',
   },
@@ -98,22 +106,35 @@ const portfolioItems = [
   },
 ];
 
-const clients = [
-  {
-    name: 'Ahmad Syahrul',
-    role: 'CTO, Duluin Group',
-    quote:
-      "Rafli's fullstack development skills have been instrumental in building our HRMS platform. His expertise in React, Laravel, and database optimization delivered exceptional results.",
-    image: '/images/profilez.jpg',
-  },
-  {
-    name: 'Siti Nurhaliza',
-    role: 'Project Manager, PT. Telkom Indonesia',
-    quote:
-      'Working with Rafli on our support web application was seamless. His frontend development skills and attention to detail made the project a huge success.',
-    image: '/images/profilez.jpg',
-  },
+const technologies = [
+  { name: 'React', logo: '/logo/react-white.png' },
+  { name: 'Next.js', logo: '/logo/nextjs-white.png' },
+  { name: 'Vue.js', logo: '/logo/vuejs-white.png' },
+  { name: 'Laravel', logo: '/logo/laravel-white.png' },
+  { name: 'Node.js', logo: '/logo/nodejs-white.svg' },
+  { name: 'Docker', logo: '/logo/docker-white.png' },
+  { name: 'MySQL', logo: '/logo/mysql-white.png' },
+  { name: 'Go Lang', logo: '/logo/golang-white.png' },
+  { name: 'Tailwind CSS', logo: '/logo/tailwind-white.png' },
+  { name: 'PostgreSQL', logo: '/logo/postgresql-white.webp' },
 ];
+
+// const clients = [
+//   {
+//     name: 'Ahmad Syahrul',
+//     role: 'CTO, Duluin Group',
+//     quote:
+//       "Rafli's fullstack development skills have been instrumental in building our HRMS platform. His expertise in React, Laravel, and database optimization delivered exceptional results.",
+//     image: '/images/profilez.jpg',
+//   },
+//   {
+//     name: 'Siti Nurhaliza',
+//     role: 'Project Manager, PT. Telkom Indonesia',
+//     quote:
+//       'Working with Rafli on our support web application was seamless. His frontend development skills and attention to detail made the project a huge success.',
+//     image: '/images/profilez.jpg',
+//   },
+// ];
 
 export default function Home() {
   const handleContactClick = () => {
@@ -168,12 +189,6 @@ export default function Home() {
                   >
                     Get in Touch
                   </Button>
-                  <Button
-                    variant="outline"
-                    className="border-black text-black hover:bg-black hover:text-white"
-                  >
-                    View Work
-                  </Button>
                 </div>
               </div>
             </div>
@@ -193,45 +208,89 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Me Section */}
-      <section id="about" className="bg-gray-50 py-20">
+      {/* Technology Stack Section */}
+      <section className="overflow-hidden bg-black py-16">
         <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-            <div>
-              <h2 className="mb-6 text-4xl font-bold text-black">ABOUT ME</h2>
-              <p className="mb-8 text-lg leading-relaxed text-gray-600">
-                Being a fullstack developer is truly a rewarding experience as it offers the
-                opportunity to bring digital ideas to life from concept to deployment. With 3+ years
-                of experience in web and mobile app development, I specialize in creating end-to-end
-                solutions using modern technologies like React, Next.js, Vue.js, Laravel, Node.js,
-                Docker, and MySQL. My passion lies in building scalable, efficient, and
-                user-friendly applications that solve real business problems.
+          <h2 className="mb-8 text-center text-sm font-semibold uppercase tracking-wider text-gray-400">
+            Technologies I Work With
+          </h2>
+          <div className="relative">
+            <div className="animate-scroll flex space-x-12">
+              {[...technologies, ...technologies].map((tech, index) => (
+                <div key={index} className="flex-shrink-0 transition-transform hover:scale-110">
+                  <Image
+                    src={tech.logo}
+                    alt={tech.name}
+                    width={120}
+                    height={120}
+                    className="h-20 w-auto object-contain transition-all"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" className="bg-gradient-to-br from-gray-50 to-gray-100 py-20">
+        <div className="container mx-auto px-6">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-5xl font-bold text-black">ABOUT ME</h2>
+            <div className="mx-auto h-1 w-24 bg-black"></div>
+          </div>
+
+          <div className="mb-16 grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
+            <div className="space-y-6">
+              <p className="text-xl leading-relaxed text-gray-700">
+                I&apos;m a <span className="font-bold text-black">Software Engineer Lead</span> and{' '}
+                <span className="font-bold text-black">Fullstack Developer</span> based in Bandung,
+                Indonesia, with <span className="font-bold text-black">3+ years</span> of experience
+                in building web and mobile applications.
+              </p>
+
+              <p className="text-lg leading-relaxed text-gray-600">
+                Currently leading development at SATU Digital Creative and working at Duluin Group,
+                specializing in HR Management Systems, employee platforms, and government web
+                applications.
+              </p>
+
+              <p className="text-lg leading-relaxed text-gray-600">
+                I work with React, Next.js, Vue.js, Laravel, Node.js, Go Lang, Docker, MySQL, and
+                modern CSS frameworks like Tailwind and Bootstrap to build scalable solutions from
+                concept to deployment.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-8">
-              <div className="text-center">
-                <div className="mb-2 text-5xl font-bold text-black">3+</div>
-                <div className="text-gray-600">Years Experience</div>
+            <div className="grid grid-cols-2 gap-6">
+              <div className="group rounded-2xl bg-white p-8 text-center shadow-lg transition-all hover:scale-105 hover:shadow-2xl">
+                <div className="mb-3 text-6xl font-bold text-black">3+</div>
+                <div className="text-sm font-medium uppercase tracking-wide text-gray-600">
+                  Years Experience
+                </div>
               </div>
-              <div className="text-center">
-                <div className="mb-2 text-5xl font-bold text-black">50+</div>
-                <div className="text-gray-600">Projects Completed</div>
+              <div className="group rounded-2xl bg-white p-8 text-center shadow-lg transition-all hover:scale-105 hover:shadow-2xl">
+                <div className="mb-3 text-6xl font-bold text-black">20+</div>
+                <div className="text-sm font-medium uppercase tracking-wide text-gray-600">
+                  Projects Completed
+                </div>
               </div>
-              <div className="text-center">
-                <div className="mb-2 text-5xl font-bold text-black">98%</div>
-                <div className="text-gray-600">Client Satisfaction</div>
+              <div className="group rounded-2xl bg-white p-8 text-center shadow-lg transition-all hover:scale-105 hover:shadow-2xl">
+                <div className="mb-3 text-6xl font-bold text-black">12+</div>
+                <div className="text-sm font-medium uppercase tracking-wide text-gray-600">
+                  Technologies Mastered
+                </div>
               </div>
-              <div className="text-center">
-                <div className="mb-2 text-5xl font-bold text-black">24/7</div>
-                <div className="text-gray-600">Support Available</div>
+              <div className="group rounded-2xl bg-white p-8 text-center shadow-lg transition-all hover:scale-105 hover:shadow-2xl">
+                <div className="mb-3 text-6xl font-bold text-black">4+</div>
+                <div className="text-sm font-medium uppercase tracking-wide text-gray-600">
+                  Companies Worked
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Services Section */}
       <section id="services" className="py-20">
         <div className="container mx-auto px-6">
           <div className="mb-12 flex items-center justify-between">
@@ -299,19 +358,24 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <h2 className="mb-12 text-4xl font-bold text-black">EXPERIENCES</h2>
 
-          <div className="space-y-8">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
             {experiences.map((exp, index) => (
               <div
                 key={index}
-                className="flex items-start space-x-6 rounded-2xl bg-white p-6 shadow-lg"
+                className="group relative overflow-hidden rounded-2xl border border-gray-200 bg-white p-8 shadow-sm transition-all duration-300 hover:border-gray-400 hover:shadow-xl"
               >
-                <div className="text-3xl">{exp.icon}</div>
-                <div className="flex-1">
-                  <h3 className="mb-2 text-xl font-bold text-black">{exp.role}</h3>
-                  <p className="mb-2 text-gray-600">{exp.company}</p>
-                  <p className="mb-4 text-sm text-gray-500">{exp.date}</p>
-                  <p className="text-gray-600">{exp.description}</p>
+                <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-gray-100 text-3xl transition-transform duration-300 group-hover:scale-110 group-hover:bg-black group-hover:shadow-lg">
+                  <span className="transition-all group-hover:animate-bounce">{exp.icon}</span>
                 </div>
+                <div>
+                  <h3 className="mb-3 text-2xl font-bold text-black transition-colors group-hover:text-gray-800">
+                    {exp.role}
+                  </h3>
+                  <p className="mb-2 text-lg font-semibold text-gray-700">{exp.company}</p>
+                  <p className="mb-6 text-sm font-medium text-gray-500">{exp.date}</p>
+                  <p className="leading-relaxed text-gray-600">{exp.description}</p>
+                </div>
+                <div className="absolute right-0 top-0 h-1 w-0 bg-black transition-all duration-300 group-hover:w-full"></div>
               </div>
             ))}
           </div>
@@ -376,32 +440,68 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-gray-800 bg-black py-12 text-white">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col items-center justify-between md:flex-row">
-            <div className="mb-4 md:mb-0">
-              <div className="mb-2 text-2xl font-bold">
+          <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-3">
+            <div>
+              <div className="mb-3 text-2xl font-bold">
                 Muhammad Rafli Naufal <span className="text-white">©</span>
               </div>
-              <p className="text-gray-400">Fullstack Developer</p>
+              <p className="mb-4 text-gray-400">Fullstack Developer</p>
+              <div className="flex space-x-4">
+                <a
+                  href="https://www.linkedin.com/in/muhammad-rafli-naufal/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 transition-all hover:bg-white hover:text-black"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.instagram.com/rafliin/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 transition-all hover:bg-white hover:text-black"
+                  aria-label="Instagram"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href="mailto:muhamadraflinaufal@gmail.com"
+                  className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-800 transition-all hover:bg-white hover:text-black"
+                  aria-label="Email"
+                >
+                  <Mail className="h-5 w-5" />
+                </a>
+              </div>
             </div>
 
-            <div className="mb-4 flex space-x-8 md:mb-0">
-              <a href="#about" className="transition-colors hover:text-gray-300">
-                About Me
-              </a>
-              <a href="#work" className="transition-colors hover:text-gray-300">
-                Work
-              </a>
-              <a href="#services" className="transition-colors hover:text-gray-300">
-                Services
-              </a>
-              <a href="#experience" className="transition-colors hover:text-gray-300">
-                Experience
-              </a>
+            <div>
+              <h3 className="mb-4 text-lg font-semibold">Quick Links</h3>
+              <div className="flex flex-col space-y-2">
+                <a href="#about" className="text-gray-400 transition-colors hover:text-white">
+                  About Me
+                </a>
+                <a href="#work" className="text-gray-400 transition-colors hover:text-white">
+                  Work
+                </a>
+                <a href="#services" className="text-gray-400 transition-colors hover:text-white">
+                  Services
+                </a>
+                <a href="#experience" className="text-gray-400 transition-colors hover:text-white">
+                  Experience
+                </a>
+              </div>
             </div>
 
-            <div className="text-sm text-gray-400">
-              © 2025 Muhammad Rafli Naufal. All Rights Reserved.
+            <div>
+              <h3 className="mb-4 text-lg font-semibold">Get in Touch</h3>
+              <p className="mb-2 text-gray-400">muhamadraflinaufal@gmail.com</p>
+              <p className="text-gray-400">Bandung, Indonesia</p>
             </div>
+          </div>
+
+          <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-400">
+            © 2025 Muhammad Rafli Naufal. All Rights Reserved.
           </div>
         </div>
       </footer>
