@@ -1,0 +1,31 @@
+export const siteConfig = {
+  name: 'Muhammad Rafli Naufal',
+  shortName: 'rafliin.dev',
+  title: 'Muhammad Rafli Naufal · Head of IT & Creative Tech Lead',
+  description:
+    'Head of IT at Duluin Group and Head of Creative IT Development at SATU Digital Creative. Building B2B SaaS, agency web platforms, and scalable digital products from Bandung, Indonesia.',
+  url: 'https://rafliin.dev',
+  locale: 'en_US',
+  email: 'muhamadraflinaufal@gmail.com',
+  phone: '+6285174464640',
+  location: 'Bandung, Indonesia',
+  ogImage: '/images/profilez.jpg',
+  links: {
+    linkedin: 'https://www.linkedin.com/in/muhammad-rafli-naufal/',
+    instagram: 'https://www.instagram.com/rafliin/',
+    whatsapp: 'https://wa.me/6285174464640',
+  },
+  keywords: [
+    'Muhammad Rafli Naufal',
+    'Head of IT',
+    'Creative IT Lead',
+    'Fullstack Architect',
+    'SATU Digital Creative',
+    'Duluin Group',
+    'Bandung developer',
+    'B2B SaaS',
+    'Next.js',
+    'React',
+    'Laravel',
+  ],
+} as const;

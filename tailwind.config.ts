@@ -26,10 +26,15 @@ const config = {
     },
     extend: {
       fontFamily: {
-        body: ['"Inter"', 'sans-serif'],
-        sans: ['var(--font-inter)', 'sans-serif'],
+        display: ['var(--font-syne)', 'sans-serif'],
+        body: ['var(--font-dm-sans)', 'sans-serif'],
+        sans: ['var(--font-dm-sans)', 'sans-serif'],
       },
       colors: {
+        canvas: 'var(--canvas)',
+        ink: 'var(--ink)',
+        mute: 'var(--mute)',
+        line: 'var(--line)',
         beige: '#fefbf6',
         darkGray: '#1A1A1A',
         coral: '#FF6F61',

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" fill="none">
+  <rect width="600" height="400" fill="#F3F4F6"/>
+  <rect x="40" y="40" width="520" height="320" rx="16" fill="#E5E7EB"/>
+  <text x="300" y="195" text-anchor="middle" font-family="system-ui, sans-serif" font-size="28" font-weight="700" fill="#111111">Workin' by Duluin</text>
+  <text x="300" y="230" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" fill="#6B7280">Enterprise HRIS SaaS</text>
+</svg>
